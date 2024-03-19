@@ -4,7 +4,15 @@ import Image from "next/image"
 import { useSession } from "next-auth/react"
 import { usePathname,useRouter } from "next/navigation"
 const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}) => {
-  const [copied,setCopied]=useState(false)
+  const [copied,setCopied]=useState("")
+
+  const handleCopy=()=>{
+    setCopied(post.prompt)
+    navigator.clipboard.writeText(post.prompt)
+    setTimeout(()=>setCopied(""),6000)
+  }
+ 
+ 
   return (
     <div className="prompt_card">
       <div className="flex-1 justify-between item-start gap-5">
@@ -19,10 +27,10 @@ const PromptCard = ({post,handleTagClick,handleEdit,handleDelete}) => {
             {post.creator.email}
           </p>
         </div>
-        <div className="copy_btn" onClick={()=>{}}>
+        <div className="copy_btn" onClick={handleCopy}>
           <Image
-            width={12} height={12} alt="copie icon"
-            src={copied ===post.prompt ? '/assets/icons/tich.svg':'/assets/icons/copy.svg'}
+            width={16} height={16} alt="copie icon"
+            src={copied ===post.prompt ? '/assets/icons/tick.svg':'/assets/icons/copy.svg'}
           />
       </div>
       </div>

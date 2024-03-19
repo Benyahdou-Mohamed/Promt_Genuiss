@@ -18,5 +18,6 @@ const PromptSchema= new Schema({
         require:[true,'tag is required'],
     }
 })
-const Prompt = models.PromptSchema || model("Prompt",PromptSchema)
+const Prompt = models.Prompt || model("Prompt",PromptSchema)
+
 export default Prompt

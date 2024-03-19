@@ -1,6 +1,5 @@
+import Prompt from "@models/prompt";
 import { connectToDB } from "@utils/database";
-import mongoose from "mongoose";
-var Prompt = mongoose.model('Prompt')
 
 export const GET = async (request) => {
     try {
@@ -12,4 +11,4 @@ export const GET = async (request) => {
     } catch (error) {
         return new Response("Failed to fetch all prompts", { status: 500 })
     }
-}
+} 
