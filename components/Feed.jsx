@@ -4,7 +4,7 @@ import PromptCard from "./PromptCard"
 
 const PromptCardList=({data,handleTagClick})=>{
   return(
-    <div className="mt-16 promt_layout">
+    <div className="mt-16 prompt_layout">
       {data.map((post)=>(
         <PromptCard
           key={post._id}
@@ -18,9 +18,24 @@ const PromptCardList=({data,handleTagClick})=>{
   )
 }
 const Feed = () => {
+  
   const [searchText,setSearchText]=useState('')
   const [allPosts, setAllPosts] = useState([]);
-  const handleSearchChange=(e)=>{}
+  const [searchedResults, setSearchedResults] = useState([]);
+  const handleSearchChange= (e)=>{
+    setSearchText(e.target.value)
+    const regex = new RegExp(searchText, "i")
+    
+    allPosts.filter((post)=>{
+      post.prompt=="filter"
+    })
+    const filtredPosts = allPosts.filter((item)=>regex.test(item.creator.username) ||
+    regex.test(item.tag) ||
+    regex.test(item.prompt))
+    setSearchedResults(filtredPosts)
+    
+    
+  }
 
   const fetchPosts = async () => {
     const response = await fetch("/api/prompt");
@@ -34,6 +49,7 @@ const Feed = () => {
     
   },[])
   return (
+   
     <section className="feed">
       <form action="" className="relative w-full flex-center">
         <input type="text" className="search_input peer" placeholder="Search for a tag or a username"
@@ -42,8 +58,14 @@ const Feed = () => {
           required
         />
       </form>
-      <PromptCardList data={allPosts} handleTagClick={()=>{}}/>
+      {searchText ?
+      <PromptCardList data={searchedResults} handleTagClick={()=>{}}/>
+    :
+    <PromptCardList data={allPosts} handleTagClick={()=>{}}/>
+    }
     </section>
+    
+    
   )
 }
 
