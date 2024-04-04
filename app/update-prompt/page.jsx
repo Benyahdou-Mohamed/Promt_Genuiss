@@ -9,10 +9,10 @@ const EditPrompt = () => {
       const [post, setPost] = useState({ prompt: "", tag: "" });
       const router = useRouter();
   function Search() {
-    
-      
+
        // Custom hook to fetch promptId
-      
+       const searchParams =useSearchParams()
+       const promptId=searchParams.get('id')
       const { data: session } = useSession();
     
       useEffect(() => {
