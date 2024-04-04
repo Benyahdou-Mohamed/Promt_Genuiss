@@ -1,9 +1,11 @@
-import Feed from '@components/Feed'
-
+import Feed from '@/components/Feed'
+import {motion} from 'framer-motion'
 const page = () => {
   
   return (
+
     <section className="w-full flex-center flex-col">
+     
         <h1 className="head_text text-center">
             Discover & Share <br className="max-md:hidden"/>
             <span className="orange_gradient text-center">AI-Powered Promps</span>
@@ -13,7 +15,7 @@ const page = () => {
             discover, create and share creative prompts
             </p>
         </h1>
-        <Feed></Feed>
+        <Feed/>
     </section>
   )
 }
