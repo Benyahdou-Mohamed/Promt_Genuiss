@@ -8,7 +8,8 @@ const EditPrompt = () => {
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({ prompt: "", tag: "" });
   const router = useRouter();
-  const promptId = usePromptId(); // Custom hook to fetch promptId
+  const searchParams =useSearchParams()
+  const promptId = searchParams.get('id'); // Custom hook to fetch promptId
   const { data: session } = useSession();
 
   useEffect(() => {
