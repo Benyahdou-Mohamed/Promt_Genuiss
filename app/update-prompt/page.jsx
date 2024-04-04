@@ -8,7 +8,7 @@ const EditPrompt = () => {
    const [submitting,setSubmitting]= useState(false) 
    const [post,setPost]= useState({prompt:'',tag:''})
    const router = useRouter()
-   const searchParams =useSearchParams()
+   //dd searchParams =useSearchParams()
   //  const promptId=searchParams.get('id')
   const promptId=1
     const { data: session } = useSession()
