@@ -3,13 +3,19 @@ import { useEffect, useState, Suspense } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Form from "@/components/Form";
-
+function Search() {
+  const searchParams =useSearchParams()
+  const promptId = searchParams.get('id')
+  return promptId
+}
 const EditPrompt = () => {
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({ prompt: "", tag: "" });
   const router = useRouter();
-  const searchParams =useSearchParams()
-  const promptId = searchParams.get('id'); // Custom hook to fetch promptId
+   // Custom hook to fetch promptId
+  <Suspense>
+    {promptId=Search()}
+  </Suspense>
   const { data: session } = useSession();
 
   useEffect(() => {
